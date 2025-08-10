@@ -13,11 +13,14 @@ ft {
     L_TYPE
 } figure_type;
 
+struct figure;
+
 typedef struct __attribute__((packed))
 part {
 // их значения все равно не выйдут из деапозона от 0 до 30,
 // так что можно использовать char, который занимает всего 1 байт памяти
     char x, y;
+    struct figure* parent_ptr;
 } part;
 
 typedef struct
