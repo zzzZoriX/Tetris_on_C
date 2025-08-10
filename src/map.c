@@ -39,3 +39,16 @@ delete_map(map* map){
 
     free(*map);
 }
+
+void
+place_figure(figure* figure, map* map){
+    for(char i = 0; i < 4; ++i){
+        char 
+            x = figure->parts[i].x,
+            y = figure->parts[i].y
+        ;
+
+        (*map)[y][x].f_part = figure->parts[i];
+        (*map)[y][x].is_free = false;
+    }
+}

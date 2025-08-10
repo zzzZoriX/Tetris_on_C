@@ -9,7 +9,8 @@
 #define HEIGHT  25
 
 #define SCORE_LEVEL 3
-#define SPEED_LEVEL 5
+#define SPEED_LEVEL 7
+#define NEXT_FIGURE_LEVEL 11
 
 typedef struct __attribute__((packed))
 {
@@ -19,6 +20,6 @@ typedef struct __attribute__((packed))
 } game_data;
 
 void
-display_map(map, const i32, const unsigned char);
+display_map(const map, const game_data);
 
 #endif // GRAPHICS_H

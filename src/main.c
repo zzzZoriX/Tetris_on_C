@@ -10,6 +10,9 @@
  */
 
 #include "./lib/main.h"
+#include "lib/figure.h"
+#include "lib/graphics.h"
+#include "lib/map.h"
 
 i32
 main(void){
@@ -26,6 +29,11 @@ kernel(){
     char c;
 
     i32 score = 0;
+    unsigned char speed = 1;
+    figure 
+        * current_figure,
+        * next_figure
+    ;
     
     printf(
         "It's my own realization of tetris on C!\n"
@@ -39,6 +47,9 @@ kernel(){
     init_rnd(); // инициализируем рандомайзер для фигур
     init_map(&map); // инициализируем игровое поле
 
+    current_figure = generate_figure();
+    next_figure = generate_figure();
+
     while(true){
         if(_kbhit()){
             c = _getch();
@@ -47,10 +58,16 @@ kernel(){
                 break;
         }
 
-        system("cls");
-        display_map(map, score, 1);
+// устанавливаем фигуру на поле
+        place_figure(current_figure, &map);
 
-        Sleep(1000);
+        system("cls");
+        display_map(
+            map, 
+            (game_data){next_figure, score, speed}
+        );
+
+        Sleep(1000 / speed);
     }
 
     delete_map(&map);

@@ -53,6 +53,8 @@ generate_figure(){
     new_figure->color = colors[color_index];
     new_figure->type = figure_types[ft_index];
     new_figure->x = get_rand(&_mt_x) % 15;
+    if(new_figure->x == 15)
+        --new_figure->x;
 
 
     for(char i = 0; i < 4; ++i)

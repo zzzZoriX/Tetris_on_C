@@ -9,7 +9,7 @@ _print_width(){
 }
 
 void
-display_map(map map, const i32 score, const unsigned char speed){
+display_map(const map map, const game_data gd){
     _print_width();
 
     for(char h = 0; h < HEIGHT - 2; ++h){
@@ -29,9 +29,19 @@ display_map(map map, const i32 score, const unsigned char speed){
         printf(" |");
 
         if(h == SCORE_LEVEL)
-            printf("\t%d\n", score);
+            printf("\tscore:\n");
+        else if(h == SCORE_LEVEL + 1)
+            printf("\t  %d\n", gd.score);
+
         else if(h == SPEED_LEVEL)
-            printf("\t%d\n", speed);
+            printf("\tspeed:\n");
+        else if(h == SPEED_LEVEL + 1)
+            printf("\t  %d\n", gd.speed);
+
+        else if(h == NEXT_FIGURE_LEVEL)
+            printf("\tnext:\n");
+        //else if(h == NEXT_FIGURE_LEVEL + 1);
+
         else
             printf("\n");
     }

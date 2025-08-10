@@ -16,6 +16,9 @@ void
 init_map(map*);
 
 void
+place_figure(figure*, map*);
+
+void
 delete_map(map*);
 
 #endif // MAP_H
