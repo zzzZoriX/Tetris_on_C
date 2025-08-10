@@ -2,7 +2,7 @@
 
 void
 init_map(map* map){
-    *map = (cell**)calloc(30 - 2, sizeof(cell*));
+    *map = (cell**)calloc(25 - 2, sizeof(cell*));
     if(!*map){
         _set_cmd_text_color(RED);
         printf("Error: Can't allocate memory for map...");
@@ -10,7 +10,7 @@ init_map(map* map){
         exit(1);
     }
 
-    for(char h = 0; h < 30 - 2; ++h){
+    for(char h = 0; h < 25 - 2; ++h){
         (*map)[h] = (cell*)calloc(15 - 2, sizeof(cell));
         if(!(*map)[h]){
             for (int i = 0; i < h; ++i)
@@ -24,7 +24,7 @@ init_map(map* map){
         }
     }
 
-    for(char h = 0; h < 30 - 2; ++h)
+    for(char h = 0; h < 25 - 2; ++h)
         for(char w = 0; w < 15 - 2; ++w)
             (*map)[h][w].is_free = true;
 }
@@ -34,7 +34,7 @@ delete_map(map* map){
     if(!map || !*map)
         return;
     
-    for(char h = 0; h < 30 - 2; ++h)
+    for(char h = 0; h < 25 - 2; ++h)
         free((*map)[h]);
 
     free(*map);
