@@ -4,6 +4,7 @@
 #include "common.h"
 #include "graphics.h"
 #include "figure.h"
+#include "map.h"
 
 const i16 __stdcall
 kernel();
