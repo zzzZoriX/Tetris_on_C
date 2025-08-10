@@ -35,7 +35,7 @@ kernel(){
     init_rnd(); // инициализируем рандомайзер для фигур
     init_map(&map); // инициализируем игровое поле
 
-    display_map(2, 1);
+    display_map(map, 2, 1);
 
     delete_map(&map);
 

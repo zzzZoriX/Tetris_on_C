@@ -11,6 +11,6 @@
 #define SPEED_LEVEL 5
 
 void
-display_map(const i32, const unsigned char);
+display_map(map, const i32, const unsigned char);
 
 #endif // GRAPHICS_H
