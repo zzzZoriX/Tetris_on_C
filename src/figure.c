@@ -49,7 +49,7 @@ generate_figure(){
 
     new_figure->color = colors[color_index];
     new_figure->type = figure_types[ft_index];
-    new_figure->x = get_rand(&_mt_x) % WIDTH;
+    new_figure->x = get_rand(&_mt_x) % 15;
 
 
     for(char i = 0; i < 4; ++i)

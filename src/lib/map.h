@@ -3,7 +3,6 @@
 
 #include "common.h"
 #include "figure.h"
-#include "graphics.h"
 
 typedef struct
 cell {

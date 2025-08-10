@@ -2,6 +2,7 @@
 #define GRAPHICS_H
 
 #include "common.h"
+#include "map.h"
 
 #define WIDTH   15
 #define HEIGHT  30

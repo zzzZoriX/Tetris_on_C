@@ -2,7 +2,6 @@
 #define FIGURE_H
 
 #include "common.h"
-#include "graphics.h"
 #include "mt.h"
 
 typedef enum
