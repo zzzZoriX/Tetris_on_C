@@ -23,9 +23,13 @@ main(void){
 const i16 __stdcall
 kernel(){
     map map;
+    char c;
+
+    i32 score = 0;
     
     printf(
-        "its my own realization of tetris on C!\n"
+        "It's my own realization of tetris on C!\n"
+        "\tto exit press 'q'\n"
         "    press any key to continue...\n"
     );
 
@@ -35,9 +39,24 @@ kernel(){
     init_rnd(); // инициализируем рандомайзер для фигур
     init_map(&map); // инициализируем игровое поле
 
-    display_map(map, 2, 1);
+    while(true){
+        if(_kbhit()){
+            c = _getch();
+
+            if(c == 'q')
+                break;
+        }
+
+        system("cls");
+        display_map(map, score, 1);
+
+        Sleep(1000);
+    }
 
     delete_map(&map);
+
+    system("cls");
+    printf("Total score: %d\n", score);
 
     return 0;
 }

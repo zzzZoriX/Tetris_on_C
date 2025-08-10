@@ -25,13 +25,17 @@ init_map(map* map){
     }
 
     for(char h = 0; h < 30 - 2; ++h)
-        for(char w = 0; w < 15; ++w)
+        for(char w = 0; w < 15 - 2; ++w)
             (*map)[h][w].is_free = true;
 }
 
 void
 delete_map(map* map){
+    if(!map || !*map)
+        return;
+    
     for(char h = 0; h < 30 - 2; ++h)
-        for(char w = 0; w < 15; ++w)
-            free(*map[h]);
+        free((*map)[h]);
+
+    free(*map);
 }
