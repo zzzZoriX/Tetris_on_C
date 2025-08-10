@@ -13,17 +13,25 @@ ft {
     L_TYPE
 } figure_type;
 
+typedef struct __attribute__((packed))
+part {
+// их значения все равно не выйдут из деапозона от 0 до 30,
+// так что можно использовать char, который занимает всего 1 байт памяти
+    char x, y;
+} part;
+
 typedef struct
 figure {
     figure_type type;
     i32 color;
-    char x, y; // x и y все равно не будут больше 127 и уж точно не опустятся ниже 0
+    part parts[4]; // больше 4 их быть не может
+    char x, y; // координаты левого нижнего угла фигуры
 } figure;
 
 void
 init_rnd();
 
 figure*
-generate_figure(const char, const char);
+generate_figure();
 
 #endif // FIGURE_H
