@@ -1,4 +1,5 @@
 #include "./lib/figure.h"
+#include "lib/common.h"
 
 static enum ft
 figure_types[] = {
@@ -38,7 +39,9 @@ generate_figure(){
     figure* new_figure = (figure*)malloc(sizeof(figure));
     if(!new_figure){
         system("cls");
+        _set_cmd_text_color(FOREGROUND_RED | FOREGROUND_INTENSITY);
         printf("Error: Can't allocate memory for figure...");
+        _set_cmd_text_color(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
         exit(1);
     }
 
