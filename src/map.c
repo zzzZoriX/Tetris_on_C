@@ -1,7 +1,7 @@
 #include "./lib/map.h"
 
 void
-init_map(cell*** map){
+init_map(map* map){
     *map = (cell**)calloc(30 - 2, sizeof(cell*));
     if(!*map){
         printf("Error: Can't allocate memory for map...");
@@ -22,7 +22,7 @@ init_map(cell*** map){
 }
 
 void
-delete_map(cell*** map){
+delete_map(map* map){
     for(char h = 0; h < 30 - 2; ++h)
         for(char w = 0; w < 15; ++w)
             free(*map[h]);

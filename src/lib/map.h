@@ -10,10 +10,12 @@ cell {
     part f_part;
 } cell;
 
-void
-init_map(cell***);
+typedef cell** map;
 
 void
-delete_map(cell***);
+init_map(map*);
+
+void
+delete_map(map*);
 
 #endif // MAP_H

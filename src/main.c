@@ -22,7 +22,7 @@ main(void){
 
 const i16 __stdcall
 kernel(){
-    cell** map;
+    map map;
     
     printf(
         "its my own realization of tetris on C!\n"
