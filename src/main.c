@@ -10,7 +10,6 @@
  */
 
 #include "./lib/main.h"
-#include "lib/figure.h"
 
 i32
 main(void){
@@ -23,6 +22,8 @@ main(void){
 
 const i16 __stdcall
 kernel(){
+    cell** map;
+    
     printf(
         "its my own realization of tetris on C!\n"
         "    press any key to continue...\n"
@@ -32,8 +33,11 @@ kernel(){
     system("cls");
 
     init_rnd(); // инициализируем рандомайзер для фигур
+    init_map(&map); // инициализируем игровое поле
 
     display_map(2, 1);
+
+    delete_map(&map);
 
     return 0;
 }

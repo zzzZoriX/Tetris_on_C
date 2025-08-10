@@ -12,6 +12,9 @@ cell {
 } cell;
 
 void
-init_map(cell[WIDTH - 2][HEIGHT - 2]);
+init_map(cell***);
+
+void
+delete_map(cell***);
 
 #endif // MAP_H
