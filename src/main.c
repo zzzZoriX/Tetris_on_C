@@ -10,6 +10,7 @@
  */
 
 #include "./lib/main.h"
+#include "lib/figure.h"
 
 i32
 main(void){
@@ -29,6 +30,8 @@ kernel(){
 
     _getch();
     system("cls");
+
+    init_rnd(); // инициализируем рандомайзер для фигур
 
     display_map(2, 1);
 
