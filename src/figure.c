@@ -11,12 +11,12 @@ figure_types[] = {
 
 static i32
 colors[] = {
-    (FOREGROUND_RED | FOREGROUND_INTENSITY),
-    (FOREGROUND_GREEN | FOREGROUND_INTENSITY),
-    (FOREGROUND_BLUE | FOREGROUND_INTENSITY),
-    (FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY),
-    (FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_INTENSITY),
-    (FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY)
+    RED,
+    GREEN,
+    BLUE,
+    WHEEL,
+    PURPLE,
+    YELLOW
 };
 
 static mt _meta, _mt_x;
@@ -39,9 +39,9 @@ generate_figure(){
     figure* new_figure = (figure*)malloc(sizeof(figure));
     if(!new_figure){
         system("cls");
-        _set_cmd_text_color(FOREGROUND_RED | FOREGROUND_INTENSITY);
+        _set_cmd_text_color(RED);
         printf("Error: Can't allocate memory for figure...");
-        _set_cmd_text_color(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+        _set_cmd_text_color(WHITE);
         exit(1);
     }
 

@@ -4,9 +4,9 @@ void
 init_map(map* map){
     *map = (cell**)calloc(30 - 2, sizeof(cell*));
     if(!*map){
-        _set_cmd_text_color(FOREGROUND_RED | FOREGROUND_INTENSITY);
+        _set_cmd_text_color(RED);
         printf("Error: Can't allocate memory for map...");
-        _set_cmd_text_color(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+        _set_cmd_text_color(WHITE);
         exit(1);
     }
 
@@ -17,9 +17,9 @@ init_map(map* map){
                 free((*map)[i]);
             free(*map);
 
-            _set_cmd_text_color(FOREGROUND_RED | FOREGROUND_INTENSITY);
+            _set_cmd_text_color(RED);
             printf("Error: Can't allocate memory for map...");
-            _set_cmd_text_color(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+            _set_cmd_text_color(WHITE);
             exit(1);
         }
     }
