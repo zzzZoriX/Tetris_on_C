@@ -41,10 +41,10 @@ kernel(){
         "    press any key to continue...\n"
     );
 
-    _getch();
+    c = _getch();
     system("cls");
 
-    init_rnd(); // инициализируем рандомайзер для фигур
+    init_rnd(c); // инициализируем рандомайзер для фигур
     init_map(&map); // инициализируем игровое поле
 
     current_figure = generate_figure();

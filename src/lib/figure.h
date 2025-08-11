@@ -31,7 +31,7 @@ figure {
 } figure;
 
 void
-init_rnd();
+init_rnd(const i32);
 
 figure*
 generate_figure();

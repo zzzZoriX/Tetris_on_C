@@ -28,10 +28,10 @@ init_part(part* p, const char x, const char y){
 
 
 void
-init_rnd(){
-    init_mt(&_meta, 21231);
-    init_mt(&_mt_x, 312);
-}
+init_rnd(const i32 seed){
+    init_mt(&_meta, (seed >> 2));
+    init_mt(&_mt_x, (seed | 11825) ^ 14824);
+}   
 
 figure*
 generate_figure(){
