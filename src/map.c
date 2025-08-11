@@ -49,8 +49,18 @@ delete_map(map* map){
 }
 
 // (figure->type == LINE ? 3 : 4) - т.к. line использует лишь 3 части, то использование четвертой будет неправильным
+// 13 - ширина поля/последняя ячейка поля в ширину, 14 за ее границами
 void
-place_figure(figure* figure, map* map){
+place_figure(figure* figure, map* map){ 
+    for(char i = 0; i < (figure->type == LINE ? 3 : 4); ++i){
+        const char x = figure->parts[i].x;
+        if(x >= 13)
+            move_left(figure);
+
+        else if(x <= -1)
+            move_right(figure);
+    }
+
     for(char i = 0; i < (figure->type == LINE ? 3 : 4); ++i){ 
         char 
             x = figure->parts[i].x,
