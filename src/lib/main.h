@@ -15,4 +15,7 @@ change_figure(figure**, figure**, map*);
 void
 save_data();
 
+void
+settings();
+
 #endif // MAIN_H

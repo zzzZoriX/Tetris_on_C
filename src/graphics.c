@@ -1,5 +1,4 @@
 #include "./lib/graphics.h"
-#include "lib/figure.h"
 
 static inline void
 _print_width(){
@@ -42,7 +41,7 @@ display_map(const map map, const game_data gd){
         else if(h == SPEED_LEVEL)
             printf("\t  speed:\n");
         else if(h == SPEED_LEVEL + 1)
-            printf("\t   %.2f\n", gd.speed);
+            printf("\t   %.1f\n", gd.speed);
 
 
         else if(h == NEXT_FIGURE_LEVEL)

@@ -10,6 +10,7 @@
  */
 
 #include "./lib/main.h"
+#include <conio.h>
 
 static f32 speed = 1;
 static i32 score = 0;
@@ -40,21 +41,27 @@ main(void){
 void __stdcall
 kernel(){
     map map;
-    char c;
+    char c = 's';
 
     figure 
         * current_figure,
         * next_figure
     ;
     
-    printf(
+    while(c == 's'){
+        printf(
         "It's my own realization of tetris on C!\n"
-        "\tto exit press 'q'\n"
-        "    press any key to continue...\n"
-    );
+            "\tto exit press 'q'\n"
+            "\tto settings press 's'\n"
+            "    press any key to continue...\n"
+        );
 
-    c = _getch();
-    system("cls");
+        c = _getch();
+        system("cls");
+
+        if(c == 's')
+            settings();
+    }
 
     init_rnd(c); // инициализируем рандомайзер для фигур
     init_map(&map); // инициализируем игровое поле
@@ -170,4 +177,46 @@ save_data(){
     _set_cmd_text_color(GREEN);
     printf("Data successfully saved on path: C:\\CTETRIS_DATA_SAVE.dat!");
     _set_cmd_text_color(WHITE);
+}
+
+void
+settings(){
+    char c;
+
+    printf(
+        "  change speed:\n"
+        "\t%.1f\n", speed
+    );
+
+    while(true){
+        if(_kbhit()){
+            c = _getch();
+
+            if(c == 'q')
+                break;
+
+            if(c == 77){
+                speed += 0.1;
+
+                system("cls");
+                printf(
+                    "  change speed:\n"
+                    "\t%.1f\n", speed
+                );
+            }
+
+            if(c == 75){
+                if(speed >= 0.1)
+                    speed -= 0.1;
+
+                system("cls");
+                printf(
+                    "  change speed:\n"
+                    "\t%.1f\n", speed
+                );
+            }
+        }
+    }
+
+    system("cls");
 }
