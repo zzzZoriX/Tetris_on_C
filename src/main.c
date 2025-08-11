@@ -20,12 +20,12 @@ i32
 main(void){
     system("cls");
 
-    const i16 result = kernel(); 
+    kernel(); 
 
     return 0;
 }
 
-const i16 __stdcall
+void __stdcall
 kernel(){
     map map;
     char c;
@@ -102,7 +102,7 @@ kernel(){
     system("cls");
     printf("Total score: %d\n", score);
 
-    return 0;
+    return;
 }
 
 void

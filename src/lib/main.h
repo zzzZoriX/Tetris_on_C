@@ -6,7 +6,7 @@
 #include "figure.h"
 #include "map.h"
 
-const i16 __stdcall
+void __stdcall
 kernel();
 
 void
