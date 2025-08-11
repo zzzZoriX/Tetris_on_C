@@ -35,6 +35,15 @@ delete_map(map* map){
         return;
     
     for(char h = 0; h < 25 - 2; ++h)
+        for(char w = 0; w < 15 - 2; ++w)
+            if(!(*map)[h][w].is_free && (*map)[h][w].f_part.parent_ptr){
+                figure* f = (*map)[h][w].f_part.parent_ptr;
+                free(f);
+
+                f = NULL;
+            }
+
+    for(char h = 0; h < 25 - 2; ++h)
         free((*map)[h]);
 
     free(*map);
