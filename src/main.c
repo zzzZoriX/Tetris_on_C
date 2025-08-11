@@ -10,6 +10,11 @@
  */
 
 #include "./lib/main.h"
+#include "lib/map.h"
+
+static unsigned char speed = 1;
+static i32 score = 0;
+
 
 i32
 main(void){
@@ -25,8 +30,6 @@ kernel(){
     map map;
     char c;
 
-    i32 score = 0;
-    unsigned char speed = 1;
     figure 
         * current_figure,
         * next_figure
@@ -57,8 +60,14 @@ kernel(){
             else if(c == 'a')
                 move_figure(current_figure, &map, move_left);
 
-            else if(c == 's')
+            else if(c == 's'){
+                if(!check_bottom(current_figure, map)){
+                    change_figure(&current_figure, &next_figure);
+                    continue;
+                }
+
                 move_figure(current_figure, &map, move_down);
+            }
 
             else if(c == 'q')
                 break;
@@ -75,7 +84,12 @@ kernel(){
             (game_data){next_figure, score, speed}
         );
 
-        
+
+        if(!check_bottom(current_figure, map)){
+            change_figure(&current_figure, &next_figure);
+            continue;
+        }
+
 // пассивно двигаем фигуру вниз
         move_figure(current_figure, &map, move_down);
 
@@ -89,4 +103,12 @@ kernel(){
     printf("Total score: %d\n", score);
 
     return 0;
+}
+
+void
+change_figure(figure** cf, figure** nf){
+    *cf = *nf;
+    *nf = generate_figure();
+
+    ++score;
 }

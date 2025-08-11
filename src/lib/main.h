@@ -9,4 +9,7 @@
 const i16 __stdcall
 kernel();
 
+void
+change_figure(figure**, figure**);
+
 #endif // MAIN_H

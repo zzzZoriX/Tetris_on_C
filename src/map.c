@@ -89,3 +89,17 @@ move_figure(figure* f, map* map, void (*dir)(figure*)){
     remove_figure(f, map);
     dir(f);
 }
+
+bool
+check_bottom(figure* f, map map){
+    for(char i = 0; i < (f->type == LINE ? 3 : 4); ++i){
+        char
+            x = f->parts[i].x,
+            y = f->parts[i].y + 1
+        ;
+
+        if(y >= 23 || (!map[y][x].is_free && map[y][x].f_part.parent_ptr != f)) return false;
+    }
+
+    return true;
+}

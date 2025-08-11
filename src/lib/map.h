@@ -27,4 +27,7 @@ remove_figure(figure*, map*);
 void
 move_figure(figure*, map*, void(*)(figure*));
 
+bool
+check_bottom(figure*, map);
+
 #endif // MAP_H
