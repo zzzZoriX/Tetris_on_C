@@ -39,4 +39,13 @@ generate_figure();
 void
 delete_figure(figure**);
 
+void
+move_down(figure*);
+
+void
+move_right(figure*);
+
+void
+move_left(figure*);
+
 #endif // FIGURE_H

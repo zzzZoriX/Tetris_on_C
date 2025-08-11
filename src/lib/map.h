@@ -21,4 +21,10 @@ place_figure(figure*, map*);
 void
 delete_map(map*);
 
+void
+remove_figure(figure*, map*);
+
+void
+move_figure(figure*, map*, void(*)(figure*));
+
 #endif // MAP_H

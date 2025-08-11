@@ -1,5 +1,4 @@
 #include "./lib/figure.h"
-#include "lib/common.h"
 
 static enum ft
 figure_types[] = {
@@ -114,4 +113,28 @@ delete_figure(figure** f){
         (*f)->parts[i].parent_ptr = NULL;
 
     *f = NULL;
+}
+
+void
+move_down(figure* f){
+    ++f->y; // т.к. левый верхний угол находится на (0;0), то, чтобы спуститься мы прибавляем y
+
+    for(char i = 0; i < 4; ++i)
+        ++f->parts[i].y;
+}
+
+void
+move_right(figure* f){
+    ++f->x;
+
+    for(char i = 0; i < 4; ++i)
+        ++f->parts[i].x;
+}
+
+void
+move_left(figure* f){
+    --f->x;
+
+    for(char i = 0; i < 4; ++i)
+        --f->parts[i].x;
 }

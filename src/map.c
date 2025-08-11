@@ -1,5 +1,4 @@
 #include "./lib/map.h"
-#include "lib/figure.h"
 
 void
 init_map(map* map){
@@ -49,9 +48,10 @@ delete_map(map* map){
     free(*map);
 }
 
+// (figure->type == LINE ? 3 : 4) - т.к. line использует лишь 3 части, то использование четвертой будет неправильным
 void
 place_figure(figure* figure, map* map){
-    for(char i = 0; i < 4; ++i){
+    for(char i = 0; i < (figure->type == LINE ? 3 : 4); ++i){ 
         char 
             x = figure->parts[i].x,
             y = figure->parts[i].y
@@ -60,4 +60,22 @@ place_figure(figure* figure, map* map){
         (*map)[y][x].f_part = figure->parts[i];
         (*map)[y][x].is_free = false;
     }
+}
+
+void
+remove_figure(figure* f, map* map){
+    for(char i = 0; i < (f->type == LINE ? 3 : 4); ++i){
+        char
+            x = f->parts[i].x,
+            y = f->parts[i].y
+        ;
+
+        (*map)[y][x].is_free = true;
+    }
+}
+
+void
+move_figure(figure* f, map* map, void (*dir)(figure*)){
+    remove_figure(f, map);
+    dir(f);
 }

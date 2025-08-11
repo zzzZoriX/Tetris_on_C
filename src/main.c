@@ -10,9 +10,6 @@
  */
 
 #include "./lib/main.h"
-#include "lib/figure.h"
-#include "lib/graphics.h"
-#include "lib/map.h"
 
 i32
 main(void){
@@ -50,21 +47,27 @@ kernel(){
     current_figure = generate_figure();
     next_figure = generate_figure();
 
-    printf(
-        "%d %d %d %d\n",
-        current_figure->color, current_figure->type, current_figure->x, current_figure->y
-    );
-
     while(true){
         if(_kbhit()){
             c = _getch();
 
-            if(c == 'q')
+            if(c == 'd')
+                move_figure(current_figure, &map, move_right);
+
+            else if(c == 'a')
+                move_figure(current_figure, &map, move_left);
+
+            else if(c == 's')
+                move_figure(current_figure, &map, move_down);
+
+            else if(c == 'q')
                 break;
         }
 
+
 // устанавливаем фигуру на поле
         place_figure(current_figure, &map);
+
 
         system("cls");
         display_map(
@@ -72,12 +75,15 @@ kernel(){
             (game_data){next_figure, score, speed}
         );
 
+        
+// пассивно двигаем фигуру вниз
+        move_figure(current_figure, &map, move_down);
+
+
         Sleep(1000 / speed);
     }
 
-    printf("test\n");
     delete_map(&map);
-    printf("test\n");
 
     system("cls");
     printf("Total score: %d\n", score);
