@@ -1,4 +1,5 @@
 #include "./lib/map.h"
+#include "lib/figure.h"
 
 void
 init_map(map* map){
@@ -37,10 +38,9 @@ delete_map(map* map){
     for(char h = 0; h < 25 - 2; ++h)
         for(char w = 0; w < 15 - 2; ++w)
             if(!(*map)[h][w].is_free && (*map)[h][w].f_part.parent_ptr){
-                figure* f = (*map)[h][w].f_part.parent_ptr;
-                free(f);
+                delete_figure(&(*map)[h][w].f_part.parent_ptr);
 
-                f = NULL;
+                (*map)[h][w].is_free = true;
             }
 
     for(char h = 0; h < 25 - 2; ++h)

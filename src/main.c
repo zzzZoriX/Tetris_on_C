@@ -50,6 +50,11 @@ kernel(){
     current_figure = generate_figure();
     next_figure = generate_figure();
 
+    printf(
+        "%d %d %d %d\n",
+        current_figure->color, current_figure->type, current_figure->x, current_figure->y
+    );
+
     while(true){
         if(_kbhit()){
             c = _getch();
@@ -70,7 +75,9 @@ kernel(){
         Sleep(1000 / speed);
     }
 
+    printf("test\n");
     delete_map(&map);
+    printf("test\n");
 
     system("cls");
     printf("Total score: %d\n", score);

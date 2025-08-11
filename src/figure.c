@@ -104,3 +104,14 @@ generate_figure(){
 
     return new_figure;
 }
+
+void
+delete_figure(figure** f){
+    if(!f || !*f)
+        return;
+    
+    for(char i = 0; i < 4; ++i)
+        (*f)->parts[i].parent_ptr = NULL;
+
+    *f = NULL;
+}

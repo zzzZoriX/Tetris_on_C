@@ -14,7 +14,7 @@ ft {
 
 struct figure;
 
-typedef struct __attribute__((packed))
+typedef struct
 part {
 // их значения все равно не выйдут из деапозона от 0 до 30,
 // так что можно использовать char, который занимает всего 1 байт памяти
@@ -35,5 +35,8 @@ init_rnd();
 
 figure*
 generate_figure();
+
+void
+delete_figure(figure**);
 
 #endif // FIGURE_H
