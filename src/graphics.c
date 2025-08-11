@@ -1,4 +1,5 @@
 #include "./lib/graphics.h"
+#include "lib/figure.h"
 
 static inline void
 _print_width(){
@@ -28,19 +29,58 @@ display_map(const map map, const game_data gd){
         }
         printf(" |");
 
-        if(h == SCORE_LEVEL)
-            printf("\tscore:\n");
+        if(h == MAX_SCORE_LEVEL)
+            printf("\tmax score:\n");
+        else if(h == MAX_SCORE_LEVEL + 1)
+            printf("\t    %d\n", gd.max_score);
+
+        else if(h == SCORE_LEVEL)
+            printf("\t  score:\n");
         else if(h == SCORE_LEVEL + 1)
-            printf("\t  %d\n", gd.score);
+            printf("\t    %d\n", gd.score);
 
         else if(h == SPEED_LEVEL)
-            printf("\tspeed:\n");
+            printf("\t  speed:\n");
         else if(h == SPEED_LEVEL + 1)
-            printf("\t  %d\n", gd.speed);
+            printf("\t   %.2f\n", gd.speed);
+
 
         else if(h == NEXT_FIGURE_LEVEL)
-            printf("\tnext:\n");
-        //else if(h == NEXT_FIGURE_LEVEL + 1);
+            printf("\t  next:\n");
+        
+        else if(h == NEXT_FIGURE_LEVEL + 1){
+            _set_cmd_text_color(gd.next_figure->color);
+            printf("\t  []");
+
+            if(gd.next_figure->type == SQUARE)
+                printf("[]");
+
+            printf("\n");
+            _set_cmd_text_color(WHITE);
+        }
+        else if(h == NEXT_FIGURE_LEVEL + 2){
+            _set_cmd_text_color(gd.next_figure->color);
+            printf("\t  []");
+
+            if(gd.next_figure->type == SQUARE || gd.next_figure->type == THUNDER)
+                printf("[]");
+
+            printf("\n");
+            _set_cmd_text_color(WHITE);
+        }
+        else if(h == NEXT_FIGURE_LEVEL + 3 && gd.next_figure->type != SQUARE){
+            _set_cmd_text_color(gd.next_figure->color);
+            
+            if(gd.next_figure->type == LINE)
+                printf("\t  []\n");
+            else if(gd.next_figure->type == L_TYPE)
+                printf("\t  [][]\n");
+            else if(gd.next_figure->type == THUNDER)
+                printf("\t    []\n");
+
+            _set_cmd_text_color(WHITE);
+        }
+
 
         else
             printf("\n");

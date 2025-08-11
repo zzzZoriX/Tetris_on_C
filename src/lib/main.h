@@ -12,4 +12,7 @@ kernel();
 void
 change_figure(figure**, figure**, map*);
 
+void
+save_data();
+
 #endif // MAIN_H

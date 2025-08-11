@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <Windows.h>
+#include <ctype.h>
 
 typedef int16_t         i16;
 typedef uint16_t        u16;

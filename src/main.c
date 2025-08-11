@@ -10,10 +10,10 @@
  */
 
 #include "./lib/main.h"
-#include "lib/map.h"
 
-static unsigned char speed = 1;
+static f32 speed = 1;
 static i32 score = 0;
+static i32 max_score = 0;
 
 
 i32
@@ -21,6 +21,18 @@ main(void){
     system("cls");
 
     kernel(); 
+
+    printf(
+        "\nSave data? (y/n)\n"
+    );
+
+    char answer;
+    scanf("%c", &answer);
+    getchar();
+    answer = tolower(answer);
+
+    if(answer == 'y')
+        save_data();
 
     return 0;
 }
@@ -81,7 +93,7 @@ kernel(){
         system("cls");
         display_map(
             map, 
-            (game_data){next_figure, score, speed}
+            (game_data){next_figure, score, max_score, speed}
         );
 
 
@@ -99,8 +111,11 @@ kernel(){
 
     delete_map(&map);
 
+    if(max_score < score)
+        max_score = score;
+
     system("cls");
-    printf("Total score: %d\n", score);
+    printf("Total score: %d\nMax score: %d\n", score, max_score);
 
     return;
 }
@@ -133,4 +148,26 @@ change_figure(figure** cf, figure** nf, map* map){
     *nf = generate_figure();
 
     score += 10;
+}
+
+void
+save_data(){
+    system("cls");
+
+    FILE* sfpt = fopen("C:\\CTETRIS_DATA_SAVE.dat", "wb");
+    if(!sfpt){
+        _set_cmd_text_color(RED);
+        printf("Error: Can't create a save file on path: C:\\CTETRIS_DATA_SAVE.dat");
+        _set_cmd_text_color(WHITE);
+
+        exit(1);
+    }
+
+    fprintf(sfpt, "%d %f", max_score, speed);
+
+    fclose(sfpt);
+
+    _set_cmd_text_color(GREEN);
+    printf("Data successfully saved on path: C:\\CTETRIS_DATA_SAVE.dat!");
+    _set_cmd_text_color(WHITE);
 }

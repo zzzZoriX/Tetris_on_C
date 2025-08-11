@@ -8,15 +8,17 @@
 #define WIDTH   15
 #define HEIGHT  25
 
-#define SCORE_LEVEL 3
-#define SPEED_LEVEL 7
-#define NEXT_FIGURE_LEVEL 11
+#define MAX_SCORE_LEVEL 3
+#define SCORE_LEVEL 7
+#define SPEED_LEVEL 11
+#define NEXT_FIGURE_LEVEL 15
 
 typedef struct __attribute__((packed))
 {
     figure* next_figure;
     i32 score;
-    unsigned char speed;
+    i32 max_score;
+    f32 speed;
 } game_data;
 
 void
