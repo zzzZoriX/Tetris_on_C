@@ -103,3 +103,22 @@ check_bottom(figure* f, map map){
 
     return true;
 }
+
+char
+check_rows(map map){
+    for(char h = 22; h >= 0; --h){
+        bool is_full_row = true;
+
+        for(char w = 0; w < 15 - 2; ++w)
+            if(map[h][w].is_free){
+                is_full_row = false;
+                break;
+            }
+
+        if(is_full_row){
+            return h;
+        }
+    }
+
+    return -1;
+}

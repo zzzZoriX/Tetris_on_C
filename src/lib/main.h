@@ -10,6 +10,6 @@ const i16 __stdcall
 kernel();
 
 void
-change_figure(figure**, figure**);
+change_figure(figure**, figure**, map*);
 
 #endif // MAIN_H

@@ -30,4 +30,7 @@ move_figure(figure*, map*, void(*)(figure*));
 bool
 check_bottom(figure*, map);
 
+char
+check_rows(map);
+
 #endif // MAP_H

@@ -62,7 +62,7 @@ kernel(){
 
             else if(c == 's'){
                 if(!check_bottom(current_figure, map)){
-                    change_figure(&current_figure, &next_figure);
+                    change_figure(&current_figure, &next_figure, &map);
                     continue;
                 }
 
@@ -86,7 +86,7 @@ kernel(){
 
 
         if(!check_bottom(current_figure, map)){
-            change_figure(&current_figure, &next_figure);
+            change_figure(&current_figure, &next_figure, &map);
             continue;
         }
 
@@ -106,9 +106,31 @@ kernel(){
 }
 
 void
-change_figure(figure** cf, figure** nf){
+change_figure(figure** cf, figure** nf, map* map){
+    char full_row = -1;
+
+    while((full_row = check_rows(*map)) != -1){
+        for (char w = 0; w < WIDTH - 2; ++w) {
+            if (!(*map)[full_row][w].is_free && (*map)[full_row][w].f_part.parent_ptr) 
+                (*map)[full_row][w].f_part.parent_ptr = NULL;
+
+            (*map)[full_row][w].is_free = true;
+        }
+
+        for (char h = full_row; h > 0; --h)
+            for (char w = 0; w < WIDTH - 2; ++w)
+                (*map)[h][w] = (*map)[h-1][w];
+
+        for (char w = 0; w < WIDTH - 2; ++w) {
+            (*map)[0][w].is_free = true;
+            (*map)[0][w].f_part.parent_ptr = NULL;
+        }
+        
+        score += 100;
+    }
+
     *cf = *nf;
     *nf = generate_figure();
 
-    ++score;
+    score += 10;
 }

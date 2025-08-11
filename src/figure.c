@@ -29,7 +29,7 @@ init_part(part* p, const char x, const char y){
 
 void
 init_rnd(){
-    init_mt(&_meta, 21);
+    init_mt(&_meta, 21231);
     init_mt(&_mt_x, 312);
 }
 
