@@ -35,6 +35,8 @@ main(void){
     if(answer == 'y')
         save_data();
 
+    Sleep(1000);
+
     return 0;
 }
 
@@ -166,6 +168,8 @@ save_data(){
         _set_cmd_text_color(RED);
         printf("Error: Can't create a save file on path: C:\\CTETRIS_DATA_SAVE.dat");
         _set_cmd_text_color(WHITE);
+
+        Sleep(1000);
 
         exit(1);
     }
